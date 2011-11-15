@@ -6,6 +6,8 @@ Get it from Github: https://github.com/xoxco/breakpoints
 
 Demo: http://xoxco.com/projects/code/breakpoints/
 
+Created by XOXCO: http://xoxco.com
+
 *Instructions*
 
 $(window).setBreakpoints({
