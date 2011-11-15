@@ -37,7 +37,6 @@
 		interval = setInterval(function() {
 	
 			var w = $(window).width();
-			
 			var done = false;
 			
 			for (var bp in options.breakpoints.sort(function(a,b) { return (b-a) })) {
@@ -60,7 +59,7 @@
 				}				
 
 				// fire onExit when browser contracts out of a larger breakpoint
-				if (w <= options.breakpoints[bp] && lastSize > options.breakpoints[bp]) {
+				if (w < options.breakpoints[bp] && lastSize >= options.breakpoints[bp]) {
 					$('body').removeClass('breakpoint-' + options.breakpoints[bp]);
 					$(window).trigger('exitBreakpoint' + options.breakpoints[bp]);
 
@@ -82,8 +81,9 @@
 			}
 			
 			// set up for next call
-			lastSize = w;
-	
+			if (lastSize != w) {
+				lastSize = w;
+			}
 		},250);
 	};
 	

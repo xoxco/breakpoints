@@ -1,5 +1,8 @@
 <head>
 	<title>Breakpoints.js - Handy events for your responsive design!</title>
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no">
+	
+	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 	<script src="breakpoints.js"></script>
 	<script>
@@ -57,10 +60,15 @@
 			padding: 5px 10px;
 		}
 		#instructions {
-			overflow: hidden;
 			float: left;
 			width: 40%;
 			margin: 20px 5%;
+		}
+		#instructions input {
+			border:0px;
+			padding:2%;
+			width: 96%;
+			border:1px solid #000;
 		}
 		
 		#status {
@@ -71,6 +79,17 @@
 		.breakpoint-1024 #status p.breakpoint1024 { color: #000; font-weight:bold; background: #F0F0F0; }
 		.breakpoint-768 #status p.breakpoint768 { color: #000; font-weight:bold; background: #F0F0F0;}
 		.breakpoint-320 #status p.breakpoint320 { color: #000; font-weight:bold; background: #F0F0F0; }
+
+
+		.breakpoint-1024 { 
+			background: #FFFF99;
+		}
+		.breakpoint-768 { 
+			background: #FFFFCC;
+		}
+		.breakpoint-320 { 
+			background: #FFFFFF;
+		}
 
 	</style>
 </head>
@@ -102,6 +121,13 @@
 		<h3>Instructions</h3>
 		
 		<pre>
+Include jQuery and breakpoints.js in your &lt;head&gt; tag.
+
+Make sure to include this tag for mobile devices:
+<input value='&lt;meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no"&gt;'>
+
+Then, in your jQuery bootup:
+
 $(window).setBreakpoints({
 // use only largest available vs use all available
 	distinct: true, 
