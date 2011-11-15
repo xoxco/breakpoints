@@ -2,6 +2,10 @@
 
 Define breakpoints for your responsive design, and Breakpoints.js will fire custom events when the browser enters and/or exits that breakpoint.
 
+Get it from Github: https://github.com/xoxco/breakpoints
+
+Demo: http://xoxco.com/projects/code/breakpoints/
+
 *Instructions*
 
 $(window).setBreakpoints({
