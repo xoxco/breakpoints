@@ -1,0 +1,148 @@
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="breakpoints.js"></script>
+	<script>
+	
+		$(function() { 
+		
+
+			$(window).bind('exitBreakpoint320',function() {
+				$('#log').append('<p>Exiting 320 breakpoint</p>');
+			});
+			$(window).bind('enterBreakpoint320',function() {
+				$('#log').append('<p>Entering 320 breakpoint</p>');
+			});
+
+			$(window).bind('exitBreakpoint768',function() {
+				$('#log').append('<p>Exiting 768 breakpoint</p>');
+			});
+			$(window).bind('enterBreakpoint768',function() {
+				$('#log').append('<p>Entering 768 breakpoint</p>');
+			});
+
+			$(window).bind('exitBreakpoint1024',function() {
+				$('#log').append('<p>Exiting 1024 breakpoint</p>');
+			});
+			$(window).bind('enterBreakpoint1024',function() {
+				$('#log').append('<p>Entering 1024 breakpoint</p>');
+			});
+
+			$(window).setBreakpoints();
+
+			$('#distinct').bind('click',function() {
+				$(window).resetBreakpoints();
+				$(window).setBreakpoints({distinct: $('#distinct').is(":checked")});
+				$(window).resize();
+			});
+
+		});
+		
+		
+	
+	</script>
+	<style>
+		body {
+			background: #FFF; 
+			margin:0px;
+			padding:0px;
+		}
+		#log { 
+			width: 40%;
+			margin: 20px 5%;
+			float: left;
+		}
+		#log p {
+			font-size: 12px;
+			padding: 5px 10px;
+		}
+		#instructions {
+			overflow: hidden;
+			float: left;
+			width: 40%;
+			margin: 20px 5%;
+		}
+		
+		#status {
+			border:1px solid #000;
+		}
+		#status p { color: #CCC;  margin:0px; padding:10px;}
+
+		.breakpoint-1024 #status p.breakpoint1024 { color: #000; font-weight:bold; background: #F0F0F0; }
+		.breakpoint-768 #status p.breakpoint768 { color: #000; font-weight:bold; background: #F0F0F0;}
+		.breakpoint-320 #status p.breakpoint320 { color: #000; font-weight:bold; background: #F0F0F0; }
+
+	</style>
+</head>
+<body>
+	<div id="instructions">
+		<h1>Breakpoints.js</h1>
+		<p>
+			Define breakpoints for your responsive design,
+			and Breakpoints.js will fire custom events 
+			and add appropriate CSS clases 
+			when the browser enters and/or exits that breakpoint.		
+		</p>
+		
+		<p>
+			<strong>Resize your browser window now and watch events to the right.</strong>
+		</p>
+		
+		<p>
+			<input name="distinct" type="checkbox" id="distinct" checked /> <label for="distinct">Use only largest available breakpoint</label>
+		</p>
+
+		
+		<h3>Instructions</h3>
+		
+		<pre>
+$(window).setBreakpoints({
+// use only largest available vs use all available
+	distinct: true, 
+// array of widths in pixels where breakpoints
+// should be triggered
+	breakpoints: [
+		320,
+		768,
+		1024
+	] 
+});		
+
+$(window).bind('enterBreakpoint320',function() {
+	...
+});
+
+$(window).bind('exitBreakpoint320',function() {
+	...
+});
+
+$(window).bind('enterBreakpoint768',function() {
+	...
+});
+
+$(window).bind('exitBreakpoint768',function() {
+	...
+});
+
+
+$(window).bind('enterBreakpoint1024',function() {
+	...
+});
+
+$(window).bind('exitBreakpoint1024',function() {
+	...
+});
+
+		</pre>
+	</div>
+	<div id="log">
+	
+			
+		<h3>Active Breakpoints</h3>
+		<div id="status">
+		<p class="breakpoint1024">1024</p>
+		<p class="breakpoint768">768</p>
+		<p class="breakpoint320">320</p>
+		</div>
+		
+	</div>
+</body>
