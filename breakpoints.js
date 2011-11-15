@@ -17,14 +17,13 @@
 (function($) {
 
 	var lastSize = 0;
-	var options = {
-					distinct: true,
-					breakpoints: new Array(320,768,1024)
-				    };
-
+	var interval = null;
 
 	$.fn.resetBreakpoints = function() {
 		$(window).unbind('resize');
+		if (interval) {
+			clearInterval(interval);
+		}
 		lastSize = 0;
 	};
 	
@@ -34,9 +33,10 @@
 							breakpoints: new Array(320,768,1024)
 				    	},settings);
 
-		$(window).bind('resize',function() {
+
+		interval = setInterval(function() {
 	
-			var w = $(this).width();
+			var w = $(window).width();
 			
 			var done = false;
 			
@@ -84,8 +84,7 @@
 			// set up for next call
 			lastSize = w;
 	
-		});
-		$(window).resize();
+		},250);
 	};
 	
 })(jQuery);
