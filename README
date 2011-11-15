@@ -1,4 +1,4 @@
-*Breakpoints.js*
+# Breakpoints.js
 
 Define breakpoints for your responsive design, and Breakpoints.js will fire custom events when the browser enters and/or exits that breakpoint.
 
@@ -8,8 +8,9 @@ Demo: http://xoxco.com/projects/code/breakpoints/
 
 Created by XOXCO: http://xoxco.com
 
-*Instructions*
+# Instructions
 
+```
 $(window).setBreakpoints({
 // use only largest available vs use all available
 	distinct: true, 
@@ -46,3 +47,4 @@ $(window).bind('enterBreakpoint1024',function() {
 $(window).bind('exitBreakpoint1024',function() {
 	...
 });
+```
