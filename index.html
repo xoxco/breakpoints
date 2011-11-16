@@ -17,6 +17,12 @@
 				$('#log').append('<p>Entering 320 breakpoint</p>');
 			});
 
+			$(window).bind('exitBreakpoint480',function() {
+				$('#log').append('<p>Exiting 480 breakpoint</p>');
+			});
+			$(window).bind('enterBreakpoint480',function() {
+				$('#log').append('<p>Entering 480 breakpoint</p>');
+			});
 			$(window).bind('exitBreakpoint768',function() {
 				$('#log').append('<p>Exiting 768 breakpoint</p>');
 			});
@@ -78,6 +84,8 @@
 
 		.breakpoint-1024 #status p.breakpoint1024 { color: #000; font-weight:bold; background: #F0F0F0; }
 		.breakpoint-768 #status p.breakpoint768 { color: #000; font-weight:bold; background: #F0F0F0;}
+		.breakpoint-480 #status p.breakpoint480 { color: #000; font-weight:bold; background: #F0F0F0; }
+
 		.breakpoint-320 #status p.breakpoint320 { color: #000; font-weight:bold; background: #F0F0F0; }
 
 
@@ -174,6 +182,7 @@ $(window).bind('exitBreakpoint1024',function() {
 		<div id="status">
 		<p class="breakpoint1024">1024</p>
 		<p class="breakpoint768">768</p>
+		<p class="breakpoint480">480</p>
 		<p class="breakpoint320">320</p>
 		</div>
 		
