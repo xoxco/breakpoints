@@ -1,10 +1,5 @@
-<head>
-	<title>Breakpoints.js - Handy events for your responsive design!</title>
-	<meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no">
-	
-	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-	<script src="breakpoints.js"></script>
+	<script  type="text/javascript" src="http://xoxco.com/projects/code/breakpoints/breakpoints.js"></script>
 	<script>
 	
 		$(function() { 
@@ -51,34 +46,16 @@
 	
 	</script>
 	<style>
-		body {
-			background: #FFF; 
-			margin:0px;
-			padding:0px;
-		}
-		#log { 
-			width: 40%;
-			margin: 20px 5%;
-			float: left;
-		}
+
+
 		#log p {
 			font-size: 12px;
 			padding: 5px 10px;
 		}
-		#instructions {
-			float: left;
-			width: 40%;
-			margin: 20px 5%;
-		}
-		#instructions input {
-			border:0px;
-			padding:2%;
-			width: 96%;
-			border:1px solid #000;
-		}
-		
+
 		#status {
 			border:1px solid #000;
+			margin-bottom:20px;
 		}
 		#status p { color: #CCC;  margin:0px; padding:10px;}
 
@@ -89,31 +66,12 @@
 		.breakpoint-320 #status p.breakpoint320 { color: #000; font-weight:bold; background: #F0F0F0; }
 
 
-		.breakpoint-1024 { 
-			background: #FFFF99;
-		}
-		.breakpoint-768 { 
-			background: #FFFFCC;
-		}
-		.breakpoint-320 { 
-			background: #FFFFFF;
-		}
+
 
 	</style>
 </head>
 <body>
 	<div id="instructions">
-		<h1>Breakpoints.js</h1>
-		<p>
-			Define breakpoints for your responsive design,
-			and Breakpoints.js will fire custom events 
-			and add appropriate CSS clases 
-			when the browser enters and/or exits that breakpoint.		
-		</p>
-		
-		<p><a href="https://github.com/xoxco/breakpoints">Download the latest from Github</a></p>
-		
-		<p>Created by <a href="http://xoxco.com/">XOXCO</a> - web and mobile application design and development in Austin, TX</p>
 
 		<h3>Demo</h3>
 
@@ -124,56 +82,6 @@
 		<p>
 			<input name="distinct" type="checkbox" id="distinct" checked /> <label for="distinct">Use only largest available breakpoint</label>
 		</p>
-
-		
-		<h3>Instructions</h3>
-		
-		<pre>
-Include jQuery and breakpoints.js in your &lt;head&gt; tag.
-
-Make sure to include this tag for mobile devices:
-<input value='&lt;meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no"&gt;'>
-
-Then, in your jQuery bootup:
-
-$(window).setBreakpoints({
-// use only largest available vs use all available
-	distinct: true, 
-// array of widths in pixels where breakpoints
-// should be triggered
-	breakpoints: [
-		320,
-		768,
-		1024
-	] 
-});		
-
-$(window).bind('enterBreakpoint320',function() {
-	...
-});
-
-$(window).bind('exitBreakpoint320',function() {
-	...
-});
-
-$(window).bind('enterBreakpoint768',function() {
-	...
-});
-
-$(window).bind('exitBreakpoint768',function() {
-	...
-});
-
-
-$(window).bind('enterBreakpoint1024',function() {
-	...
-});
-
-$(window).bind('exitBreakpoint1024',function() {
-	...
-});
-
-		</pre>
 	</div>
 	<div id="log">
 	
@@ -185,6 +93,8 @@ $(window).bind('exitBreakpoint1024',function() {
 		<p class="breakpoint480">480</p>
 		<p class="breakpoint320">320</p>
 		</div>
+		
+		<h3>Event Log:</h3>
 		
 	</div>
 
