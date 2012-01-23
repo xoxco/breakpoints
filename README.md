@@ -23,28 +23,27 @@ Created by [XOXCO](http://xoxco.com)
 		] 
 	});		
 	
-	$(window).bind('enterBreakpoint320',function() {
+	$(window).on('enterBreakpoint320',function() {
 		...
 	});
 	
-	$(window).bind('exitBreakpoint320',function() {
+	$(window).on('exitBreakpoint320',function() {
 		...
 	});
 	
-	$(window).bind('enterBreakpoint768',function() {
+	$(window).on('enterBreakpoint768',function() {
 		...
 	});
 	
-	$(window).bind('exitBreakpoint768',function() {
+	$(window).on('exitBreakpoint768',function() {
 		...
 	});
 	
-	
-	$(window).bind('enterBreakpoint1024',function() {
+	$(window).on('enterBreakpoint1024',function() {
 		...
 	});
 	
-	$(window).bind('exitBreakpoint1024',function() {
+	$(window).on('exitBreakpoint1024',function() {
 		...
 	});
 
