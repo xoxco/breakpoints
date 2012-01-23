@@ -28,7 +28,7 @@
   
   $.fn.breakpoints = function(breakpoints) {
     
-    var oldBP = currentBP = -1; // This causes the initial changing of breakpoints from
+    var oldBP = currentBP = -1; 
     breakpoints = breakpoints.sort(function(a,b){return a-b});
     
     setInterval(function() {
@@ -50,7 +50,6 @@
                 bp2 = inBetweenBreakPoints[i+1];
             $(window).trigger('changeBreakpoint', {oldBP: bp1, newBP: bp2 });
             $(window).trigger('changeBreakpoint-' + bp1 + "-" + bp2);
-            console.log('changeBreakpoint-' + bp1 + "-" + bp2);
           }
         } else {
           $(window).trigger('changeBreakpoint', {oldBP: 0, newBP: currentBP });
