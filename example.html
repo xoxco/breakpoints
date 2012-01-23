@@ -6,10 +6,10 @@
 		$(function() { 
 			$(window).bind('changeBreakpoint', function(event, info) {
 				$('#log').append('<p>Changing breakpoint: old breakpoint = ' + info.oldBP + ", new breakpoint: " + info.newBP);
-				$('body').removeClass("breakpoint-320 breakpoint-480 breakpoint-768 breakpoint-1024");
+				$('body').removeClass("breakpoint-0 breakpoint-320 breakpoint-480 breakpoint-768 breakpoint-1024");
 				$('body').addClass("breakpoint-"+info.newBP);
 			});
-			$(window).breakpoints([320, 480, 768, 1024]);
+			$(window).breakpoints([0, 320, 480, 768, 1024]);
 		});
 	
 	</script>
@@ -27,6 +27,7 @@
 		.breakpoint-768 #status p.breakpoint768 { color: #000; font-weight:bold; background: #F0F0F0;}
 		.breakpoint-480 #status p.breakpoint480 { color: #000; font-weight:bold; background: #F0F0F0; }
 		.breakpoint-320 #status p.breakpoint320 { color: #000; font-weight:bold; background: #F0F0F0; }
+		.breakpoint-0 #status p.breakpoint0 { color: #000; font-weight:bold; background: #F0F0F0; }
 	</style>
 </head>
 <body>
@@ -43,6 +44,7 @@
 		<p class="breakpoint768">768</p>
 		<p class="breakpoint480">480</p>
 		<p class="breakpoint320">320</p>
+		<p class="breakpoint0">0</p>
 		</div>
 		<h3>Event Log:</h3>
 	</div>
