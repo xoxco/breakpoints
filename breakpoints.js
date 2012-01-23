@@ -31,6 +31,9 @@
     var oldBP = currentBP = -1; 
     breakpoints = breakpoints.sort(function(a,b){return a-b});
     
+    // ToDo: In stead of the setInterval, bind to the window resize event 
+    //       and throttle it with setInterval
+    
     setInterval(function() {
       var width = $(window).width();
       currentBP = $.getCurrentBreakPoint(breakpoints, width);
