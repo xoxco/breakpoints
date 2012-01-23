@@ -20,7 +20,7 @@
 	var interval = null;
 
 	$.fn.resetBreakpoints = function() {
-		$(window).unbind('resize');
+		$(window).off('resize');
 		if (interval) {
 			clearInterval(interval);
 		}
