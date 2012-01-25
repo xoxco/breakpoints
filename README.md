@@ -6,8 +6,7 @@ Define breakpoints for your responsive design, and Breakpoints.js will fire cust
 
 [View Demo](http://xoxco.com/projects/code/breakpoints/)
 
-Created by [XOXCO](http://xoxco.com)
-With contributions from [352 Media Group](http://www.352media.com/)
+Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](http://www.352media.com/)
 
 ## Instructions
 

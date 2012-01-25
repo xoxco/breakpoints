@@ -64,8 +64,14 @@
 
 		interval = setInterval(function() {
 	
-			var w = $(window).width() + $.getScrollbarWidth();
-			// For continuous (i.e., most non-print) media, the width specified in a CSS media query includes the scrollbar (if one exists). jQuery won't include the scrollbar in its width calculation, so we need to add the width of the scrollbar ourselves.
+			var w;
+			if ($.browser.webkit) {
+				w = $(window).width();
+			} else {
+				w = $(window).width() + $.getScrollbarWidth();
+			}
+
+			// For continuous (i.e., most non-print) media, the width specified in a media query includes the scrollbar (if one exists). In WebKit, .width() includes the scrollbar. In other browsers, it does not, so we need to add the width of the scrollbar ourselves.
 			var done = false;
 			
 			for (var bp in options.breakpoints.sort(function(a,b) { return (b-a) })) {
