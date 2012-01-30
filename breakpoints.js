@@ -31,10 +31,24 @@
     var oldBP = currentBP = -1; 
     breakpoints = breakpoints.sort(function(a,b){return a-b});
     
-    // ToDo: In stead of the setInterval, bind to the window resize event 
-    //       and throttle it with setInterval
+    var lastCall = (new Date()).getTime(),
+      resizeDefer, 
+      resizeThrottle = 30;
     
-    setInterval(function() {
+    var checkBreakPoints = function(fromResize) {
+      
+      // This throttles the calls to this function and still allows immediate reaction
+      var now = (new Date()).getTime();
+      if( fromResize && lastCall && now - lastCall < resizeThrottle ){
+        clearTimeout( resizeDefer );
+        resizeDefer = setTimeout( checkBreakPoints, resizeThrottle );
+        return;
+      }
+      else {
+        lastCall = now;
+      }
+      
+      // This checks if breakpoints have changed and triggers accordingly
       var width = $(window).width();
       currentBP = $.getCurrentBreakPoint(breakpoints, width);
       if (oldBP != currentBP) {
@@ -60,7 +74,13 @@
         }
         oldBP = currentBP;
       }
-    }, 200);
+    }
+
+    function resizeBreakPoints(){
+      checkBreakPoints(true);
+    }
+
+    $(window).bind("resize", resizeBreakPoints).resize();
     
   };
 })(jQuery);
