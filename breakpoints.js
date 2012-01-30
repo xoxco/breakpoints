@@ -31,7 +31,7 @@
     var oldBP = currentBP = -1; 
     breakpoints = breakpoints.sort(function(a,b){return a-b});
     
-    var lastCall = (new Date()).getTime(),
+    var lastCall = 0,
       resizeDefer, 
       resizeThrottle = 30;
     
