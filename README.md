@@ -9,19 +9,21 @@ Created by [XOXCO](http://xoxco.com)
 ## Instructions
 
 Initialize the plugin with an array of widths in pixels where breakpoints should be triggered
+and pass a callback that is triggered. It gets information about what breakpoint was left and which was entered:
 
-    $(window).breakpoints([320, 480, 768, 1024]);
-
-Then bind to the general "changeBreakpoint" event on the window object. The info object, that 
-gets passed in, contains information about what breakpoint was left and which was entered:
-
-    $(window).bind('changeBreakpoint', function(event, info) {
-      alert("Old:" + info.oldBP + " New: " + info.newBP);
+    breakpoints([0, 160, 320, 480, 768, 1024], function (oldPoint, newPoint) {
+      console.log(oldPoint, newPoint);
     });
 
-Alternatively bind to specific events which are fired for each transition between breakpoints:
+Alternatively bind your callbacks at another time:
+    
+    breakpoints.bind(function (oldPoint, newPoint) {
+      console.log("after", oldPoint, newPoint);
+    });
 
-    $(window).bind('changeBreakpoint-480-768', function(event) {
-      alert("Old: 480 New: 768");
+    breakpoints([0, 160, 320, 480, 768, 1024]);
+
+    breakpoints.bind(function (oldPoint, newPoint) {
+      console.log("before", oldPoint, newPoint);
     });
 
