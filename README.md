@@ -4,8 +4,6 @@ Define breakpoints for your responsive design, and Breakpoints.js will fire cust
 
 [Get it from Github](https://github.com/eikes/breakpoints)
 
-Created by [XOXCO](http://xoxco.com)
-
 ## Instructions
 
 Initialize the plugin with an array of widths in pixels where breakpoints should be triggered
@@ -27,3 +25,4 @@ Alternatively bind your callbacks at another time:
       console.log("before", oldPoint, newPoint);
     });
 
+Originally created by [XOXCO](http://xoxco.com)
