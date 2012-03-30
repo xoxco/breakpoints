@@ -26,24 +26,30 @@
       <span id="breakpoint768">768</span>
       <span id="breakpoint1024">1024</span>
     </div>
-    <p>
-      Breakpoints.js is a javascript library which lets you bind to resize 
-      events on an advanced level. You provide an array of screen widths 
-      and a callback function which is called whenever one of these 
-      breakpoints is crossed. 
-    </p>
-    <p>
-      If the browser is resized by using the maximize button of the browser, all
-      the breakpoints that are in between are triggered as separate events.
-    </p>
-    <h2>Responsive JavaScript</h2>
-    <p>
-      breakpoints.js makes the most sense when you do responsive design and you
-      would like to reorder elements in the DOM for certain screen sizes and 
-      you can't do it with regular media queries. For example move selected 
-      items into the sidebar which are part of the regular page on mobile 
-      devices.
-    </p>
+    <div class="movethis">
+      <p>
+        Breakpoints.js is a javascript library which lets you bind to resize 
+        events on an advanced level. You provide an array of screen widths 
+        and a callback function which is called whenever one of these 
+        breakpoints is crossed. 
+      </p>
+    </div>
+    <div class="movethis">
+      <p>
+        If the browser is resized by using the maximize button of the browser, all
+        the breakpoints that are in between are triggered as separate events.
+      </p>
+    </div>
+    <div class="movethis">
+      <h2>Responsive JavaScript</h2>
+      <p>
+        breakpoints.js makes the most sense when you do responsive design and you
+        would like to reorder elements in the DOM for certain screen sizes and 
+        you can't do it with regular media queries. For example move selected 
+        items into the sidebar which are part of the regular page on mobile 
+        devices.
+      </p>
+    </div>
     <h2>Usage</h2>
     <pre>
       &lt;script type="text/javascript" src="breakpoints.js">&lt;/script>
@@ -59,11 +65,13 @@
         Resize your browser window to see new log entries below or changes to the active breakpoint above.
       </strong>
     </p>
+    <div id="target"></div>
   </div>
   <h3>Event Log:</h3>
   <div id="log">
   </div>
   <script type="text/javascript" src="breakpoints.js"></script>
+  <script type="text/javascript" src="moveElements.js"></script>
   <script type="text/javascript">
     breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
       // Log the event:
@@ -79,6 +87,7 @@
         document.getElementById("log").style.width = "100%";
       }
     });
+    moveElements(480, document.getElementById("target"), "movethis");
   </script>
   <a href="http://github.com/eikes/breakpoints"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 </body>
