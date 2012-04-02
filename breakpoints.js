@@ -21,7 +21,7 @@
  */
 
 (function(){
-  var oldBP = currentBP = -1,
+  var oldBP, currentBP,
       breakpointArray;
   
   // This is the function that is exported into the global namespace
