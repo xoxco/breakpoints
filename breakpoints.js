@@ -31,7 +31,8 @@
     // Bind to the resize event, but don't remove other bindings
     if (window.addEventListener) {
       window.addEventListener("resize", checkBreakPoints, false);
-    } else if (window.attachEvent) {
+    } 
+    if (window.attachEvent) {
       window.attachEvent("onresize", checkBreakPoints);
     }
     if (callback) {
