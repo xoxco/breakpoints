@@ -22,22 +22,17 @@
 
 (function(){
   var oldBP = currentBP = -1,
-      breakpointArray,
-      lastCall = 0,
-      resizeDefer, 
-      resizeThrottle = 30;
+      breakpointArray;
   
   // This is the function that is exported into the global namespace
   breakpoints = function(userBreakpoints, callback) {
     // just in case, sort the given breakpoints
     breakpointArray = userBreakpoints.sort(function(a, b) { return a - b } );
     // Bind to the resize event, but don't remove other bindings
-    var oldResizeFunc = window.onresize;
-    window.onresize = function(){
-      if (oldResizeFunc) {
-        oldResizeFunc();
-      }
-      checkBreakPoints(true);
+    if (window.addEventListener) {
+      window.addEventListener("resize", checkBreakPoints, false);
+    } else if (window.attachEvent) {
+      window.attachEvent("onresize", checkBreakPoints);
     }
     if (callback) {
       breakpoints.bind(callback);
@@ -46,18 +41,7 @@
   }
   
   // Does the actual work:
-  var checkBreakPoints = function(fromResize) {
-    
-    // Throttle the calls to this function but still allow immediate reaction
-    var now = (new Date()).getTime();
-    if( fromResize && lastCall && now - lastCall < resizeThrottle ){
-      clearTimeout( resizeDefer );
-      resizeDefer = setTimeout( checkBreakPoints, resizeThrottle );
-      return;
-    }
-    else {
-      lastCall = now;
-    }
+  var checkBreakPoints = function() {
     
     // Get window width, code stolen from jQuery
     var docwindowProp = document.documentElement["clientWidth"];

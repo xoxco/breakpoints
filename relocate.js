@@ -19,7 +19,7 @@
     }
   }
 
-  moveElements = function(breakPoint, destinationElement, sourceClassName, sourceWrapperElement, sourceTagName) {
+  relocate = function(breakPoint, destinationElement, sourceClassName, sourceWrapperElement, sourceTagName) {
     var elements = getElementsByClass(sourceClassName, sourceWrapperElement, sourceTagName);
     var placeHolders = [];
     breakpoints.bind(function(oldPoint, newPoint) {

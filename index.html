@@ -52,11 +52,13 @@
     </div>
     <h2>Usage</h2>
     <pre>
-      &lt;script type="text/javascript" src="breakpoints.js">&lt;/script>
+      &lt;script type="text/javascript" src="breakpoints.min.js">&lt;/script>
+      &lt;script type="text/javascript" src="relocate.min.js">&lt;/script>
       &lt;script type="text/javascript">
         breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
           console.log(oldPoint, newPoint);
         });
+        relocate(480, document.getElementById("target"), "movethis");
       &lt;script>
     </pre>
     <h3>Demo</h3>
@@ -71,7 +73,7 @@
   <div id="log">
   </div>
   <script type="text/javascript" src="breakpoints.js"></script>
-  <script type="text/javascript" src="moveElements.js"></script>
+  <script type="text/javascript" src="relocate.js"></script>
   <script type="text/javascript">
     breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
       // Log the event:
@@ -87,7 +89,7 @@
         document.getElementById("log").style.width = "100%";
       }
     });
-    moveElements(480, document.getElementById("target"), "movethis");
+    relocate(480, document.getElementById("target"), "movethis");
   </script>
   <a href="http://github.com/eikes/breakpoints"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 </body>
