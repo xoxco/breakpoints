@@ -38,6 +38,7 @@
     if (callback) {
       breakpoints.bind(callback);
     }
+    oldBP = breakpointArray[0];
     checkBreakPoints();
   }
   
