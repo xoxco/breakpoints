@@ -58,7 +58,8 @@
         breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
           console.log(oldPoint, newPoint);
         });
-        relocate(480, document.getElementById("target"), "movethis");
+        var elements = document.getElementsByClassName("movethis");
+        relocate(480, document.getElementById("target"), elements);
       &lt;script>
     </pre>
     <h3>Demo</h3>
@@ -89,7 +90,8 @@
         document.getElementById("log").style.width = "100%";
       }
     });
-    relocate(480, document.getElementById("target"), "movethis");
+    var elements = document.getElementsByClassName("movethis");
+    relocate(480, document.getElementById("target"), elements);
   </script>
   <a href="http://github.com/eikes/breakpoints"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 </body>

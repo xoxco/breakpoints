@@ -2,8 +2,6 @@
 
 Define breakpoints for your responsive design, and Breakpoints.js will fire custom events when the browser enters and/or exits that breakpoint.
 
-[Get it from Github](https://github.com/eikes/breakpoints)
-
 ## Instructions
 
 Initialize the plugin with an array of widths in pixels where breakpoints should be triggered
@@ -25,4 +23,19 @@ Alternatively bind your callbacks at another time:
       console.log("before", oldPoint, newPoint);
     });
 
-Originally created by [XOXCO](http://xoxco.com)
+## Relocate.js
+
+Depends on breakpoints.js
+
+    var elements = document.getElementsByClassName("movethis");
+    relocate(480, document.getElementById("target"), elements);
+
+## Credit
+
+Breakpoints.js was originally created by [XOXCO](http://xoxco.com)
+
+Version 2.0 and 3.0 have been rewritten by [Eike Send](http://eike.se/nd)
+
+Version 2.0 removed dependencies on DOM classes and fixed bugs
+
+Version 3.0 removed jQuery dependency and introduced relocate.js

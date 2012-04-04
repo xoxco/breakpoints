@@ -20,8 +20,9 @@
  *
  */
 
-(function(){
-  var oldBP, currentBP,
+(function(win){
+  var oldBP, currentBP, i,
+      doc = win.document, 
       breakpointArray;
   
   // This is the function that is exported into the global namespace
@@ -29,11 +30,11 @@
     // just in case, sort the given breakpoints
     breakpointArray = userBreakpoints.sort(function(a, b) { return a - b } );
     // Bind to the resize event, but don't remove other bindings
-    if (window.addEventListener) {
-      window.addEventListener("resize", checkBreakPoints, false);
+    if (win.addEventListener) {
+      win.addEventListener("resize", checkBreakPoints, false);
     } 
-    if (window.attachEvent) {
-      window.attachEvent("onresize", checkBreakPoints);
+    if (win.attachEvent) {
+      win.attachEvent("onresize", checkBreakPoints);
     }
     if (callback) {
       breakpoints.bind(callback);
@@ -46,9 +47,9 @@
   var checkBreakPoints = function() {
     
     // Get window width, code stolen from jQuery
-    var docwindowProp = document.documentElement["clientWidth"];
-    var width = document.compatMode === "CSS1Compat" && docwindowProp 
-                || document.body && document.body["clientWidth"] 
+    var docwindowProp = doc.documentElement["clientWidth"];
+    var width = doc.compatMode === "CSS1Compat" && docwindowProp 
+                || doc.body && doc.body["clientWidth"] 
                 || docwindowProp;
     
     // This checks if breakpoints have changed and triggers accordingly
@@ -56,7 +57,7 @@
     if (oldBP != currentBP) {
       var inBetweenBreakPoints = [];
       // Find all the breakpoints that have been crossed and trigger the event as well
-      for (var i = 0; i < breakpointArray.length; i++) {
+      for (i = 0; i < breakpointArray.length; i++) {
         var el = breakpointArray[i]; 
         if (el >= oldBP && el <= currentBP || el >= currentBP && el <= oldBP) {
           inBetweenBreakPoints.push(el);
@@ -65,7 +66,7 @@
       if (currentBP < oldBP) {
         inBetweenBreakPoints = inBetweenBreakPoints.reverse();
       }
-      for (var i = 0; i < inBetweenBreakPoints.length; i++) {
+      for (i = 0; i < inBetweenBreakPoints.length; i++) {
         trigger(inBetweenBreakPoints[i]);
       }
       oldBP = currentBP;
@@ -77,10 +78,9 @@
   // breakpoints.getCurrentBreakPoint([100, 200, 300, 400], 250) -> 200
   // breakpoints.getCurrentBreakPoint([100, 200, 300, 400], 25)  -> 0
   breakpoints.getCurrentBreakPoint = function(breakpoints, width) {
-    for (var bp in breakpoints) {
-      bp = parseInt(bp);
-      if (width >= breakpoints[bp] && ( breakpoints.length == bp + 1 || width < breakpoints[bp+1] )) {
-        return breakpoints[bp];
+    for (i = 0; i < breakpoints.length; i++) {
+      if (width >= breakpoints[i] && ( breakpoints.length == i + 1 || width < breakpoints[i+1] )) {
+        return breakpoints[i];
       }
     }
     return 0;
@@ -99,12 +99,11 @@
   
   var trigger = function(value) {
     for (var i = 0; i < boundFunctions.length; i++) {
-      var func = boundFunctions[i];
       if (breakpointsHistory.length > 0 
           && breakpointsHistory[breakpointsHistory.length-1] != value) {
-        func(breakpointsHistory[breakpointsHistory.length-1], value)
+        boundFunctions[i](breakpointsHistory[breakpointsHistory.length-1], value)
       }
     }
     breakpointsHistory.push(value);
   }
-})();
+})(this);
