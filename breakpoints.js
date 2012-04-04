@@ -21,7 +21,7 @@
  */
 
 (function(win){
-  var oldBP, currentBP, i,
+  var oldBP, currentBP,
       doc = win.document, 
       breakpointArray;
   
@@ -55,7 +55,7 @@
     // This checks if breakpoints have changed and triggers accordingly
     currentBP = breakpoints.getCurrentBreakPoint(breakpointArray, width);
     if (oldBP != currentBP) {
-      var inBetweenBreakPoints = [];
+      var i, inBetweenBreakPoints = [];
       // Find all the breakpoints that have been crossed and trigger the event as well
       for (i = 0; i < breakpointArray.length; i++) {
         var el = breakpointArray[i]; 
@@ -78,7 +78,7 @@
   // breakpoints.getCurrentBreakPoint([100, 200, 300, 400], 250) -> 200
   // breakpoints.getCurrentBreakPoint([100, 200, 300, 400], 25)  -> 0
   breakpoints.getCurrentBreakPoint = function(breakpoints, width) {
-    for (i = 0; i < breakpoints.length; i++) {
+    for (var i = 0; i < breakpoints.length; i++) {
       if (width >= breakpoints[i] && ( breakpoints.length == i + 1 || width < breakpoints[i+1] )) {
         return breakpoints[i];
       }
