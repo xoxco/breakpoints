@@ -30,6 +30,8 @@ Depends on breakpoints.js
     var elements = document.getElementsByClassName("movethis");
     relocate(480, document.getElementById("target"), elements);
 
+To use this in IE8 or less you can use this [getElementsByClassName polyfill](https://gist.github.com/2299607)
+
 ## Credit
 
 Breakpoints.js was originally created by [XOXCO](http://xoxco.com)
