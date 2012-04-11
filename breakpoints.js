@@ -20,7 +20,7 @@
 	var interval = null;
 
 	$.fn.resetBreakpoints = function() {
-		$(window).unbind('resize');
+		$(window).off('resize');
 		if (interval) {
 			clearInterval(interval);
 		}
@@ -59,7 +59,7 @@
 				}				
 
 				// fire onExit when browser contracts out of a larger breakpoint
-				if (w < options.breakpoints[bp] && lastSize >= options.breakpoints[bp]) {
+				if (w < options.breakpoints[bp] && (lastSize >= options.breakpoints[bp] || !done)) {
 					$('body').removeClass('breakpoint-' + options.breakpoints[bp]);
 					$(window).trigger('exitBreakpoint' + options.breakpoints[bp]);
 
