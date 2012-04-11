@@ -4,31 +4,29 @@ Define breakpoints for your responsive design, and Breakpoints.js will fire cust
 
 ## Instructions
 
-Initialize the plugin with an array of widths in pixels where breakpoints should be triggered
+Initialize the plugin with an array of widths or an individual width in pixels where breakpoints should be triggered
 and pass a callback that is triggered. It gets information about what breakpoint was left and which was entered:
 
-    breakpoints([0, 160, 320, 480, 768, 1024], function (oldPoint, newPoint) {
+    breakpoints(600, function(oldPoint, newPoint) {
+      console.log(oldPoint, newPoint);
+    });
+    
+    breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
       console.log(oldPoint, newPoint);
     });
 
 Alternatively bind your callbacks at another time:
+
+    var myPoints = breakpoints([0, 160, 320, 480, 768, 1024]);
     
-    breakpoints.bind(function (oldPoint, newPoint) {
+    myPoints.bind(function (oldPoint, newPoint) {
       console.log("after", oldPoint, newPoint);
-    });
-
-    breakpoints([0, 160, 320, 480, 768, 1024]);
-
-    breakpoints.bind(function (oldPoint, newPoint) {
-      console.log("before", oldPoint, newPoint);
     });
 
 ## Relocate.js
 
-Depends on breakpoints.js
-
     var elements = document.getElementsByClassName("movethis");
-    relocate(480, document.getElementById("target"), elements);
+    relocate(480, document.getElementById("sidebar"), elements);
 
 To use this in IE8 or less you can use this [getElementsByClassName polyfill](https://gist.github.com/2299607)
 

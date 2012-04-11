@@ -1,7 +1,13 @@
 <head>
-  <title>Breakpoints.js Demo</title>
+  <title>relocate elements on breakpoints / media queries for javascript</title>
   <style>
-    html, body {margin: 0;padding:0}
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding:0
+    }
     #status {
       border:1px solid #000;
       padding-left: 10px;
@@ -9,89 +15,142 @@
     }
     #wrapper {
       padding: 10px;
-      max-width: 480px;
+      max-width: 800px;
+    }
+    #content {
+      max-width: 600px;
+      padding-right: 10px;
+    }
+    #sidebar {
+      float: right;
+      max-width: 200px;
+      padding: 80px 10px 10px;
+      background-color: lightblue;
+      display: none;
     }
   </style>
 </head>
 <body>
   <div id="wrapper">
-    <h1>breakpoints.js</h1>
-    <p><em>Media queries for JavaScript</em></p>
-    <h2>Active Breakpoint:</h2>
-    <div id="status">
-      <span id="breakpoint0">0</span>
-      <span id="breakpoint160">160</span>
-      <span id="breakpoint320">320</span>
-      <span id="breakpoint480">480</span>
-      <span id="breakpoint768">768</span>
-      <span id="breakpoint1024">1024</span>
-    </div>
-    <div class="movethis">
+    <div id="sidebar"></div>
+    <div id="content">
+      <h1>relocate elements on breakpoints</h1>
+      <p><em>Media queries for JavaScript</em></p>
+      <div class="movethis">
+        <h2>Active Breakpoint:</h2>
+        <div id="status">
+          <span id="breakpoint0">0</span>
+          <span id="breakpoint160">160</span>
+          <span id="breakpoint320">320</span>
+          <span id="breakpoint480">480</span>
+          <span id="breakpoint768">768</span>
+          <span id="breakpoint1024">1024</span>
+        </div>
+      </div>
+      <h2>breakpoints</h2>
       <p>
         Breakpoints.js is a javascript library which lets you bind to resize 
         events on an advanced level. You provide an array of screen widths 
         and a callback function which is called whenever one of these 
         breakpoints is crossed. 
       </p>
-    </div>
-    <div class="movethis">
       <p>
         If the browser is resized by using the maximize button of the browser, all
         the breakpoints that are in between are triggered as separate events.
       </p>
-    </div>
-    <div class="movethis">
-      <h2>Responsive JavaScript</h2>
+      <h2>relocate</h2>
       <p>
-        breakpoints.js makes the most sense when you do responsive design and you
-        would like to reorder elements in the DOM for certain screen sizes and 
-        you can't do it with regular media queries. For example move selected 
-        items into the sidebar which are part of the regular page on mobile 
-        devices.
+        breakpoints.js makes the most sense when you do mobile first responsive
+        design and you would like to reorder or show / hide elements in the DOM
+        for certain screen sizes and you can't do it with regular media queries.
       </p>
+      <p>
+        That's where the relocate function comes into play, 
+        for example move selected items into the sidebar which are mixed into
+        the regular page on mobile devices. Pass it a breakpoint
+        an Array or a NodeList of elements and a target element where to 
+        relocate the elements to.
+      </p>
+      <div class="movethis">
+        <h3>Demo</h3>
+        <p>
+          <strong>
+            Resize your browser window to see new log entries below or changes to the active breakpoint above.
+          </strong>
+        </p>
+      </div>
+      <div class="movethis">
+        <h3>Event Log:</h3>
+        <div id="log">
+        </div>
+      </div>
     </div>
-    <h2>Usage</h2>
-    <pre>
-      &lt;script type="text/javascript" src="breakpoints.min.js">&lt;/script>
-      &lt;script type="text/javascript" src="relocate.min.js">&lt;/script>
-      &lt;script type="text/javascript">
-        breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
-          console.log(oldPoint, newPoint);
-        });
-        var elements = document.getElementsByClassName("movethis");
-        relocate(480, document.getElementById("target"), elements);
-      &lt;script>
-    </pre>
-    <h3>Demo</h3>
-    <p>
-      <strong>
-        Resize your browser window to see new log entries below or changes to the active breakpoint above.
-      </strong>
-    </p>
-    <div id="target"></div>
   </div>
-  <h3>Event Log:</h3>
-  <div id="log">
-  </div>
+  <h2>Usage</h2>
+  <p>
+  Here is the code that is used to move things around on this page:
+  <pre>
+&lt;script type="text/javascript" src="breakpoints.min.js">&lt;/script>
+&lt;script type="text/javascript">
+
+// Log the event on different breakpoints:
+breakpoints([0, 300, 600, 900, 1200], function(oldPoint, newPoint) {
+  var message = 
+    "New Point: " + newPoint + 
+    "&lt;br> Old Point: " + oldPoint +  "&lt;br>&lt;hr>"
+  document.getElementById("log").innerHTML = 
+    message + document.getElementById("log").innerHTML;
+  });
+
+// Hightlight elements depending on the breakpoint
+var myPoints = breakpoints([0, 160, 320, 480, 768, 1024], 
+  function(o, n) {
+    document.getElementById("breakpoint" + o).style.color = "";
+    document.getElementById("breakpoint" + n).style.color = "red";
+  }
+);
+
+// Call breakpoints without callback 
+// and bind any amount of callbacks later:
+myPoints.bind(function(oldPoint, newPoint){
+    if (newPoint == 320 && newPoint &lt; oldPoint) {
+      document.getElementById("sidebar").style.display = "none";
+    }
+    if (oldPoint == 320 && newPoint > oldPoint) {
+      document.getElementById("sidebar").style.display = "block";
+    }
+  });
+
+// Use the relocate function to move things around:
+var elements = document.getElementsByClassName("movethis");
+relocate(480, document.getElementById("sidebar"), elements);
+
+&lt;script>
+  </pre>
   <script type="text/javascript" src="breakpoints.js"></script>
-  <script type="text/javascript" src="relocate.js"></script>
   <script type="text/javascript">
-    breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
-      // Log the event:
+    // Log the event on different breakpoints:
+    breakpoints([0, 300, 600, 900, 1200], function(oldPoint, newPoint) {
       var message = "New Point: " + newPoint + "<br> Old Point: " + oldPoint +  "<br><hr>"
       document.getElementById("log").innerHTML = message + document.getElementById("log").innerHTML;
-      // Hightlight the corresponding element
-      document.getElementById("breakpoint" + oldPoint).style.color = "black";
+      });
+    // Hightlight elements depending on the breakpoint
+    var myPoints = breakpoints([0, 160, 320, 480, 768, 1024], function(oldPoint, newPoint) {
+      document.getElementById("breakpoint" + oldPoint).style.color = "";
       document.getElementById("breakpoint" + newPoint).style.color = "red";
-      // Other Example which usualy would be solved with media queries
-      if (newPoint >= 480) {
-        document.getElementById("log").style.width = "240px";
-      } else {
-        document.getElementById("log").style.width = "100%";
-      }
     });
+    // Call breakpoints without callback and bind any amount of callbacks later:
+    myPoints.bind(function(oldPoint, newPoint){
+        if (newPoint == 320 && newPoint < oldPoint) {
+          document.getElementById("sidebar").style.display = "none";
+        }
+        if (oldPoint == 320 && newPoint > oldPoint) {
+          document.getElementById("sidebar").style.display = "block";
+        }
+      });
+    // Use the relocate function to move things around:
     var elements = document.getElementsByClassName("movethis");
-    relocate(480, document.getElementById("target"), elements);
+    relocate(480, document.getElementById("sidebar"), elements);
   </script>
   <a href="http://github.com/eikes/breakpoints"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 </body>
