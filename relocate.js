@@ -8,7 +8,7 @@ function relocate(breakPoint, destinationElement, elements) {
   breakpoints.bind(function(oldPoint, newPoint) {
     if (oldPoint < newPoint && newPoint == breakPoint) {
       for (var i = elements.length-1; i >= 0; i--) {
-        var parentEl = elements[i].parentElement;
+        var parentEl = elements[i].parentNode;
         if (placeHolders[i] === undefined) {
           placeHolders[i] = document.createElement("span");
           parentEl.insertBefore(placeHolders[i], elements[i]);
@@ -21,11 +21,11 @@ function relocate(breakPoint, destinationElement, elements) {
       var l = elements.length-1;
       var removedEls = [];
       for (var i = l; i >= 0; i--) {
-        var parentEl = elements[i].parentElement;
+        var parentEl = elements[i].parentNode;
         removedEls[i] = parentEl.removeChild(elements[i]);
       }
       for (var i = l; i >= 0; i--) {
-        placeHolders[i].parentElement.insertBefore(removedEls[i], placeHolders[i]);
+        placeHolders[i].parentNode.insertBefore(removedEls[i], placeHolders[i]);
       }
     }
   });
