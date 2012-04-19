@@ -129,9 +129,8 @@
 // Move Elements in the DOM when a certain breakpoint is crossed
 
 function relocate(breakPoint, destinationElement, elements) {
-  // ensure that we use an array-like argument
-  if (!(elements instanceof Array || elements instanceof NodeList)) 
-    elements = [elements];
+  // ensure that we use an array-like argument, NodeList and HTMLCollection work as well
+  if (elements instanceof Element) elements = [elements];
   var placeHolders = [],
       els = [], 
       parentEl, el, i,
