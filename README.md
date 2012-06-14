@@ -10,7 +10,6 @@ Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](h
 
 ## Instructions
 
-	'''javascript
 	$(window).setBreakpoints({
 	// use only largest available vs use all available
 		distinct: true, 
@@ -48,4 +47,4 @@ Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](h
 	$(window).bind('exitBreakpoint1024',function() {
 		...
 	});
-	'''
+
