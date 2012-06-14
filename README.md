@@ -2,14 +2,15 @@
 
 Define breakpoints for your responsive design, and Breakpoints.js will fire custom events when the browser enters and/or exits that breakpoint.
 
-[Get it from Github](https://github.com/xoxco/breakpoints)
+[Get it from Github](https://github.com/352Media/breakpoints)
 
 [View Demo](http://xoxco.com/projects/code/breakpoints/)
 
-Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](http://www.352media.com/)
+Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](http://www.352media.com/). This 352 Media Group branch includes more accurate calculations for non-WebKit browsers but is otherwise identical to XOXCO's version of the plugin. See [this pull request](https://github.com/xoxco/breakpoints/pull/6) for details.
 
 ## Instructions
 
+	'''javascript
 	$(window).setBreakpoints({
 	// use only largest available vs use all available
 		distinct: true, 
@@ -47,4 +48,4 @@ Created by [XOXCO](http://xoxco.com) with contributions from [352 Media Group](h
 	$(window).bind('exitBreakpoint1024',function() {
 		...
 	});
-
+	'''
