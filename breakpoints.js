@@ -28,7 +28,7 @@
 	};
 	
 	$.fn.setBreakpoints = function(settings) {
-		var options = jQuery.extend({
+		var options = $.extend({
 							distinct: true,
 							breakpoints: new Array(320,480,768,1024)
 				    	},settings);
