@@ -20,7 +20,9 @@ Created by [XOXCO](http://xoxco.com)
 			480,
 			768,
 			1024
-		] 
+		],
+	// how often to check for breakpoint
+		frequency: 250
 	});		
 	
 	$(window).bind('enterBreakpoint320',function() {
