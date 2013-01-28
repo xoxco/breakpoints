@@ -30,7 +30,8 @@
 	$.fn.setBreakpoints = function(settings) {
 		var options = jQuery.extend({
 							distinct: true,
-							breakpoints: new Array(320,480,768,1024)
+							breakpoints: new Array(320,480,768,1024),
+							frequency: 250
 				    	},settings);
 
 
@@ -84,7 +85,9 @@
 			if (lastSize != w) {
 				lastSize = w;
 			}
-		},250);
+
+		//check for breakpoint every [frequency] ms (default = 250 ms)
+		},options.frequency);
 	};
 	
 })(jQuery);
