@@ -8,6 +8,10 @@ Define breakpoints for your responsive design, and Breakpoints.js will fire cust
 
 Created by [XOXCO](http://xoxco.com)
 
+## Installation
+
+	$ bower install jquery.breakpoints
+
 ## Instructions
 
 	$(window).setBreakpoints({
