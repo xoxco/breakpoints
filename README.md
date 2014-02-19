@@ -47,4 +47,8 @@ Created by [XOXCO](http://xoxco.com)
 	$(window).bind('exitBreakpoint1024',function() {
 		...
 	});
+	
+	// Immediately run hooks
+	$(window).applyBreakpoints();
+
 
