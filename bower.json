@@ -1,0 +1,25 @@
+{
+  "name": "xoxco/breakpoints",
+  "version": "1.0.0",
+  "main": "breakpoints.js",
+  "description": "Define breakpoints for your responsive design, and Breakpoints.js will fire custom events when the browser enters and/or exits that breakpoint.",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/xoxco/breakpoints",
+  "authors": [
+    "XOXCO info@xoxco.com"
+  ],
+  "keywords": [
+    "responsive",
+    "design",
+    "breakpoints"
+  ]
+}
