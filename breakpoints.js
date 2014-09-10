@@ -30,17 +30,44 @@
 	$.fn.setBreakpoints = function(settings) {
 		var options = jQuery.extend({
 							distinct: true,
-							breakpoints: new Array(320,480,768,992,1200) //Bootstrap default sizes
+                            breakpoints: new Array(320,480,768,992,1200), //Bootstrap default sizes
+							debounceTimeout: 300
 				    	},settings);
 
+        // Debounce function for better performace of this plugin
+        var debounce = function(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
 
-		interval = setInterval(function() {
-	
-			var w = $(window).width();
+
+		var onResize = debounce(function() {
+
+            var viewportwidth;
+
+            // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+            if (typeof window.innerWidth != 'undefined')
+            {
+                viewportwidth = window.innerWidth
+            }
+
+            // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+            else if (typeof document.documentElement != 'undefined'
+                && typeof document.documentElement.clientWidth !=
+                'undefined' && document.documentElement.clientWidth != 0)
+            {
+                viewportwidth = document.documentElement.clientWidth
+            }
+
+            // older versions of IE
+            else
+            {
+                viewportwidth = document.getElementsByTagName('body')[0].clientWidth
+            }
+
+
+			var w = viewportwidth;
 			var done = false;
 			
 			for (var bp in options.breakpoints.sort(function(a,b) { return (b-a) })) {
-			
+
 				// fire onEnter when a browser expands into a new breakpoint
 				// if in distinct mode, remove all other breakpoints first.
 				if (!done && w >= options.breakpoints[bp] && lastSize < options.breakpoints[bp]) {
@@ -84,7 +111,11 @@
 			if (lastSize != w) {
 				lastSize = w;
 			}
-		},250);
+		}, options.debounceTimeout);
+
+        $(window).on("resize", onResize);
+        onResize();
+
 	};
 	
 })(jQuery);
