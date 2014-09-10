@@ -30,7 +30,7 @@
 	$.fn.setBreakpoints = function(settings) {
 		var options = jQuery.extend({
 							distinct: true,
-							breakpoints: new Array(320,480,768,1024)
+							breakpoints: new Array(320,480,768,992,1200) //Bootstrap default sizes
 				    	},settings);
 
 
